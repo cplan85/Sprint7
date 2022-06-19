@@ -9,11 +9,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { PanelComponent } from './panel/panel.component';
 
 const appRoutes: Routes = [{ path: '', component: HomeComponent }];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, PanelComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
