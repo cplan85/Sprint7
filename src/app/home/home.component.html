@@ -1,0 +1,19 @@
+<section class="check-boxes" [formGroup]="serviceOfferings">
+    <h4>Select your toppings:</h4>
+    <p><mat-checkbox (change)="togglePrice(prices[0])" formControlName="paginaWeb" color="primary">Una pàgina web (500 €)</mat-checkbox></p>
+    <p><mat-checkbox (change)="togglePrice(prices[1])" formControlName="consultoriaSEO" color="warn">Una consultoria SEO(300 €)</mat-checkbox></p>
+    <p><mat-checkbox (change)="togglePrice(prices[2])" formControlName="companyaGoogleAds">Una campanya de Google Ads (200 €)</mat-checkbox></p>
+  </section>
+
+  <mat-checkbox color='accent' class="example-margin">Check me!</mat-checkbox>
+  <button mat-button color="primary">Primary</button>
+  <button mat-button color="accent">Accent</button>
+  <button mat-button color="warn">Warn</button>
+  <button mat-button disabled>Disabled</button>
+  
+  <section class="example-section" [formGroup]="serviceOfferings">
+    <h4>You chose:</h4>
+    {{serviceOfferings.value | json}}
+
+    {{totalCost}}
+  </section>
