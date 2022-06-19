@@ -4,4 +4,4 @@ export interface priceItem {
   price: number;
 }
 
-type priceNames = 'p1' | 'p2' | 'p3';
+type priceNames = 'p1' | 'p2' | 'p3' | 'p4' | 'p5';
