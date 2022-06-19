@@ -8,7 +8,18 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./panel.component.scss'],
 })
 export class PanelComponent implements OnInit {
-  constructor() {}
+  paginaWebForm: FormGroup;
+
+  constructor(private _builder: FormBuilder) {
+    this.paginaWebForm = this._builder.group({
+      numberoPaginas: ['', Validators.required],
+      numeroIdiomas: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {}
+
+  send(values: any) {
+    console.log(values);
+  }
 }

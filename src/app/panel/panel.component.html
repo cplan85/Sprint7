@@ -1,1 +1,16 @@
-<p>panel works!</p>
+<h1>Basic Forms</h1>
+<form [formGroup]="paginaWebForm" (ngSubmit)="send(paginaWebForm.value)">
+    <label for="">
+        Numero de Paginas
+    </label>
+    <input formControlName="numberoPaginas" type="number">
+    <div style="color:red" *ngIf="paginaWebForm.get('numberoPaginas')!.hasError('numberoPaginas') && paginaWebForm.get('numberoPaginas')!.touched">It is necessary to introduce email</div>
+    <br/>
+
+    <label for="">
+        Numero de idiomas
+    </label>
+    <input formControlName="numeroIdiomas" type="number">
+    <br/>
+
+</form>
