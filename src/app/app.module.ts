@@ -15,6 +15,8 @@ import { BudgetServiceService } from './budget-service.service';
 import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
 import { InfoIdiomasDialog } from './panel/panel.component';
 import { InfoPaginasDialog } from './panel/panel.component';
+import { BudgetListComponent } from './budget-list/budget-list.component';
+import { SaveInputsComponent } from './save-inputs/save-inputs.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeScreenComponent },
@@ -29,6 +31,8 @@ const appRoutes: Routes = [
     WelcomeScreenComponent,
     InfoIdiomasDialog,
     InfoPaginasDialog,
+    BudgetListComponent,
+    SaveInputsComponent,
   ],
   imports: [
     BrowserModule,
