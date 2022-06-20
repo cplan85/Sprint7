@@ -27,5 +27,7 @@ export class HomeComponent implements OnInit {
 
   togglePrice(item: priceItem) {
     this.budgetService.togglePrice(item, this.serviceOfferings);
+
+    console.log(this.budgetService.p1);
   }
 }

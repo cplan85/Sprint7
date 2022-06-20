@@ -1,23 +1,35 @@
 
-<a href="/" mat-raised-button color="warn"><mat-icon>home</mat-icon></a>
-<section class="check-boxes" [formGroup]="serviceOfferings">
-    <h4>Select your Website Services</h4>
-    <p><mat-checkbox (change)="togglePrice(prices[0])" formControlName="paginaWeb" color="primary">Una pàgina web (500 €)</mat-checkbox></p>
-
-    <div *ngIf="this.serviceOfferings.value['paginaWeb']"><app-panel></app-panel></div>
-    <p><mat-checkbox (change)="togglePrice(prices[1])" formControlName="consultoriaSEO" color="warn">Una consultoria SEO(300 €)</mat-checkbox></p>
-    <p><mat-checkbox (change)="togglePrice(prices[2])" formControlName="companyaGoogleAds">Una campanya de Google Ads (200 €)</mat-checkbox></p>
-  </section>
-  
-  <section class="example-section" [formGroup]="serviceOfferings">
-    <!--<h4>You chose:</h4>
-    {{serviceOfferings.value | json}} -->
-  
-    <h4> PREU: {{budgetService.totalCost}} €</h4>
-
-    <app-save-inputs></app-save-inputs>
-
-  </section>
-
-  <app-budget-list></app-budget-list>
+<div class="container">
+  <div class="page">
+    <div class="main">
+      <a href="/" mat-raised-button color="warn"><mat-icon>home</mat-icon></a>
+      <section class="check-boxes" [formGroup]="serviceOfferings">
+        <h2>BUDGET</h2>
+          <h4>Select your Website Services</h4>
+          <p><mat-checkbox (change)="togglePrice(prices[0])" formControlName="paginaWeb" color="primary">Una pàgina web (500 €)</mat-checkbox></p>
+      
+          <div *ngIf="this.serviceOfferings.value['paginaWeb']"><app-panel></app-panel></div>
+          <p><mat-checkbox (change)="togglePrice(prices[1])" formControlName="consultoriaSEO" color="warn">Una consultoria SEO(300 €)</mat-checkbox></p>
+          <p><mat-checkbox (change)="togglePrice(prices[2])" formControlName="companyaGoogleAds">Una campanya de Google Ads (200 €)</mat-checkbox></p>
+          
+          <small>Pagina Web</small>
+          <mat-progress-bar mode="determinate" value="{{budgetService.p1/budgetService.totalCost* 100}}"></mat-progress-bar>
+          <small>Consultoria SEO</small>
+          <mat-progress-bar color="warn" mode="determinate" value="{{budgetService.p2/budgetService.totalCost* 100}}"></mat-progress-bar>
+          <small>Google AD Companya</small>
+          <mat-progress-bar color="accent" mode="determinate" value="{{budgetService.p3/budgetService.totalCost* 100}}"></mat-progress-bar>
+          <h4> PREU: {{budgetService.totalCost}} €</h4>
+        </section>
+        <section class="example-section" [formGroup]="serviceOfferings">
+      
+          <h2>SAVE BUDGET HERE</h2>
+          <p>If you're satisfied with your budget, give it a name and provide your customer information.</p>
+      
+          <app-save-inputs></app-save-inputs>
+      
+        </section>
+    </div>
+      <app-budget-list></app-budget-list>
+  </div>
+</div>
 

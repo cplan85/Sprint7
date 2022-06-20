@@ -6,3 +6,9 @@
   .check-boxes {
     padding: 2rem;
   }
+
+  .page {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between
+  }

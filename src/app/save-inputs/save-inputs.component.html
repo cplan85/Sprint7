@@ -2,14 +2,14 @@
   
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label> Hombre de presuppusto</mat-label>
-        <input [ngModel]="budgetName" type="text" formControlName="numberoPaginas" matInput placeholder="Expensive Website" required>
+        <input [ngModel]="budgetName" type="text" formControlName="budgetName" matInput placeholder="Expensive Website" required>
       </mat-form-field>
       <br/>
 
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Customer</mat-label>
-        <input [ngModel]="customerName" type="text" formControlName="numeroIdiomas"  matInput placeholder="John Doe" required>
+        <input [ngModel]="customerName" type="text" formControlName="customerName"  matInput placeholder="John Doe" required>
       </mat-form-field>
       <br/>
       <button mat-raised-button color="warn" [disabled]="saveInputsForm.invalid" class="btn btn-primary" type="submit">Save Budget</button>

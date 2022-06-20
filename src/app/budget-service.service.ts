@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { priceItem } from './interfaces';
+import { priceItem, budgetItem } from './interfaces';
 import { FormGroup } from '@angular/forms';
 import { webServiceNames } from './interfaces';
 
@@ -14,6 +14,8 @@ export class BudgetServiceService {
     { name: 'numberoPaginas', priceName: 'p4', price: 30 },
     { name: 'numeroIdiomas', priceName: 'p4', price: 30 },
   ];
+
+  budgets: budgetItem[] = [];
 
   public p1 = 0;
   public p2 = 0;
@@ -87,5 +89,26 @@ export class BudgetServiceService {
       this.p3 +
       this.webpages * this.p4 +
       this.idiomas * this.p5;
+  }
+
+  addBudgetItem(budgetName: string, customerName: string) {
+    this.budgets.push({
+      budgetName: budgetName,
+      customerName: customerName,
+      totalCost: this.totalCost,
+      paginaWebQuantity: this.p1 !== 0 ? 1 : 0,
+      consultoriaSEOQuantity: this.p2 !== 0 ? 1 : 0,
+      companyaGoogleQuantiy: this.p3 !== 0 ? 1 : 0,
+      paginasQuantity: this.webpages,
+      idiomasQuantity: this.idiomas,
+    });
+
+    console.log(`Budgets from Budget Services`, this.budgets);
+  }
+
+  sortAlphabetically() {
+    return this.budgets.sort((a, b) =>
+      a.budgetName.toLowerCase().localeCompare(b.budgetName.toLowerCase())
+    );
   }
 }
