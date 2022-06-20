@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { priceItem } from './interfaces';
 import { FormGroup } from '@angular/forms';
+import { webServiceNames } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +44,6 @@ export class BudgetServiceService {
 
   addWebPrices(item: priceItem, formElement: FormGroup) {
     let itemAmount = formElement.value[item.name];
-
     if (itemAmount >= 0 && item.name === 'numberoPaginas') {
       this.idiomas = this.idiomas;
       this.webpages = itemAmount;
@@ -67,8 +67,9 @@ export class BudgetServiceService {
     }
   }
 
-  addPage() {
-    this.webpages = this.webpages + 1;
+  addPage(type: webServiceNames) {
+    if (type === 'webpages') this.webpages++;
+    if (type === 'idiomas') this.idiomas++;
     this.totalCost =
       this.p1 +
       this.p2 +
@@ -76,7 +77,15 @@ export class BudgetServiceService {
       this.webpages * this.p4 +
       this.idiomas * this.p5;
   }
-  removePage() {
-    this.webpages--;
+  removePage(type: webServiceNames) {
+    if (type === 'webpages' && this.webpages > 0) this.webpages--;
+    if (type === 'idiomas' && this.idiomas > 0) this.idiomas--;
+
+    this.totalCost =
+      this.p1 +
+      this.p2 +
+      this.p3 +
+      this.webpages * this.p4 +
+      this.idiomas * this.p5;
   }
 }

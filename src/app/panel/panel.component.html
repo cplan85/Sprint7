@@ -1,18 +1,18 @@
-<h1>Basic Forms</h1>
+
 <form [formGroup]="paginaWebForm" (ngSubmit)="send(paginaWebForm.value)">
     <label for="">
         Numero de Paginas
     </label>
-    <button (click)="addPage()" mat-mini-fab color="primary" aria-label="Example icon button plus">
+    <button (click)="addPage('webpages')" mat-mini-fab color="primary" aria-label="Example icon button plus">
         <mat-icon>add</mat-icon>
       </button>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Numero de paginas</mat-label>
-        <input value="{{webpages}}" min="0" type="number" formControlName="numberoPaginas" (change)="addItem(prices[3])" matInput placeholder="type a number" required>
+        <input [ngModel]="webpages" min="0" type="number" formControlName="numberoPaginas" (change)="addItem(prices[3])" matInput placeholder="type a number" required>
       </mat-form-field>
 
    <!-- <input min="0" value="webpages" (change)="addItem(prices[3])" formControlName="numberoPaginas" type="number"> -->
-    <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+    <button (click)="removePage('webpages')" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
         <mat-icon>remove</mat-icon>
       </button>
     <div style="color:red" *ngIf="paginaWebForm.get('numberoPaginas')!.hasError('numberoPaginas') && paginaWebForm.get('numberoPaginas')!.touched">It is necessary to introduce email</div>
@@ -21,13 +21,19 @@
     <label for="">
         Numero de idiomas
     </label>
-    <button  mat-mini-fab color="primary" aria-label="add item button">
+    <button (click)="addPage('idiomas')"  mat-mini-fab color="primary" aria-label="add item button">
         <mat-icon>add</mat-icon>
       </button>
-    <input min="0" (change)="addItem(prices[4])" formControlName="numeroIdiomas" type="number">
-    <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Numero de idiomas</mat-label>
+        <input [ngModel]="idiomas" min="0" type="number" formControlName="numeroIdiomas" (change)="addItem(prices[4])" matInput placeholder="type a number" required>
+      </mat-form-field>
+
+    <button (click)="removePage('idiomas')" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
         <mat-icon>remove</mat-icon>
       </button>
     <br/>
 
+    IDIOMAS FROM PANEL{{idiomas | json}}
 </form>

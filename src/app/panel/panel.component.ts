@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { BudgetServiceService } from '../budget-service.service';
 import { priceItem } from '../interfaces';
+import { webServiceNames } from '../interfaces';
 
 @Component({
   selector: 'app-panel',
@@ -26,16 +27,31 @@ export class PanelComponent implements OnInit {
 
   prices = this.budgetService.prices;
   webpages = this.budgetService.webpages;
+  idiomas = this.budgetService.idiomas;
+
   send(values: any) {
     console.log(values);
   }
 
   addItem(item: priceItem) {
     this.budgetService.addWebPrices(item, this.paginaWebForm);
+    //THE KEY IS HERE. MAKE SURE TO update local webpage to service webpage or idioma!
+    this.webpages = this.budgetService.webpages;
+    this.idiomas = this.budgetService.idiomas;
   }
-  addPage() {
-    this.budgetService.addPage();
-    console.log('webpages from addpage', this.webpages);
-    this.webpages++;
+
+  addPage(type: webServiceNames) {
+    this.budgetService.addPage(type);
+    type === 'webpages' ? this.webpages++ : this.idiomas++;
+  }
+
+  removePage(type: webServiceNames) {
+    this.budgetService.removePage(type);
+    if (type === 'webpages' && this.webpages > 0) {
+      this.webpages--;
+    }
+    if (type === 'idiomas' && this.idiomas > 0) {
+      this.idiomas--;
+    }
   }
 }

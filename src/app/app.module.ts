@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { PanelComponent } from './panel/panel.component';
 
+import { BudgetServiceService } from './budget-service.service';
+
 const appRoutes: Routes = [{ path: '', component: HomeComponent }];
 
 @NgModule({
@@ -25,7 +27,7 @@ const appRoutes: Routes = [{ path: '', component: HomeComponent }];
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [BudgetServiceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

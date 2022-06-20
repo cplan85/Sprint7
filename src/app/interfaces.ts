@@ -5,3 +5,5 @@ export interface priceItem {
 }
 
 type priceNames = 'p1' | 'p2' | 'p3' | 'p4' | 'p5';
+
+export type webServiceNames = 'webpages' | 'idiomas';

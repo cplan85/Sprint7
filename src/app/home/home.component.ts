@@ -7,6 +7,7 @@ import { BudgetServiceService } from '../budget-service.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  providers: [BudgetServiceService],
 })
 export class HomeComponent implements OnInit {
   serviceOfferings = this._formBuilder.group({
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
     public budgetService: BudgetServiceService
   ) {}
 
+  webpages = this.budgetService.webpages;
   prices = this.budgetService.prices;
   ngOnInit(): void {}
 

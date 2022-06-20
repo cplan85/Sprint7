@@ -1,5 +1,5 @@
 <section class="check-boxes" [formGroup]="serviceOfferings">
-    <h4>Select your toppings:</h4>
+    <h4>Select your Website Services</h4>
     <p><mat-checkbox (change)="togglePrice(prices[0])" formControlName="paginaWeb" color="primary">Una pàgina web (500 €)</mat-checkbox></p>
 
     <div *ngIf="this.serviceOfferings.value['paginaWeb']"><app-panel></app-panel></div>
@@ -11,5 +11,8 @@
     <h4>You chose:</h4>
     {{serviceOfferings.value | json}}
     {{budgetService.totalCost}}
+
+    <h4>WEBPAGES FROM HOME:</h4>
+    {{webpages | json}}
   </section>
 
