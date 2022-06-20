@@ -1,8 +1,17 @@
 form {
     border-radius: 1rem;
-    border: black;
-    border-style: solid;
+    //border: black;
+    //border-style: solid;
     padding: 2rem;
 
     background-image: linear-gradient(to left bottom, #eff5ff, #eff4ff, #f0f2ff, #f1f1ff, #f2efff);
+}
+
+mat-icon {
+    cursor: pointer;
+}
+
+.info-icon {
+    //font-size:2.2rem;
+    color: black;
 }

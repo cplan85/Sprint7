@@ -12,11 +12,20 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { PanelComponent } from './panel/panel.component';
 
 import { BudgetServiceService } from './budget-service.service';
+import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
 
-const appRoutes: Routes = [{ path: '', component: HomeComponent }];
+const appRoutes: Routes = [
+  { path: '', component: WelcomeScreenComponent },
+  { path: 'home', component: HomeComponent },
+];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PanelComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PanelComponent,
+    WelcomeScreenComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

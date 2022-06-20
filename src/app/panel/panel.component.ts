@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { BudgetServiceService } from '../budget-service.service';
 import { priceItem } from '../interfaces';
 import { webServiceNames } from '../interfaces';
@@ -15,7 +16,8 @@ export class PanelComponent implements OnInit {
 
   constructor(
     private _builder: FormBuilder,
-    public budgetService: BudgetServiceService
+    public budgetService: BudgetServiceService,
+    public dialog: MatDialog
   ) {
     this.paginaWebForm = this._builder.group({
       numberoPaginas: ['', Validators.required],
@@ -28,6 +30,8 @@ export class PanelComponent implements OnInit {
   prices = this.budgetService.prices;
   webpages = this.budgetService.webpages;
   idiomas = this.budgetService.idiomas;
+  InfoPaginasDialog = InfoPaginasDialog;
+  InfoIdiomasDialog = InfoIdiomasDialog;
 
   send(values: any) {
     console.log(values);
@@ -54,4 +58,20 @@ export class PanelComponent implements OnInit {
       this.idiomas--;
     }
   }
+
+  openDialog(component: any) {
+    this.dialog.open(component);
+  }
 }
+
+@Component({
+  selector: 'info-paginas-dialog',
+  templateUrl: 'info-paginas-dialog.html',
+})
+export class InfoPaginasDialog {}
+
+@Component({
+  selector: 'info-idiomas-dialog',
+  templateUrl: 'info-idiomas-dialog.html',
+})
+export class InfoIdiomasDialog {}

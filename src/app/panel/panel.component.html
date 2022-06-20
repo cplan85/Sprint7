@@ -15,6 +15,7 @@
     <button (click)="removePage('webpages')" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
         <mat-icon>remove</mat-icon>
       </button>
+      <mat-icon (click)="openDialog(InfoPaginasDialog)" class="info-icon">info</mat-icon>
     <div style="color:red" *ngIf="paginaWebForm.get('numberoPaginas')!.hasError('numberoPaginas') && paginaWebForm.get('numberoPaginas')!.touched">It is necessary to introduce email</div>
     <br/>
 
@@ -33,7 +34,8 @@
     <button (click)="removePage('idiomas')" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
         <mat-icon>remove</mat-icon>
       </button>
+
+      <mat-icon (click)="openDialog(InfoIdiomasDialog)" class="info-icon">info</mat-icon>
     <br/>
 
-    IDIOMAS FROM PANEL{{idiomas | json}}
 </form>
