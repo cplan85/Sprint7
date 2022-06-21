@@ -19,6 +19,8 @@ export class BudgetServiceService {
 
   originalBudgets: budgetItem[] = [];
 
+  filteredBudgets: budgetItem[] = [];
+
   public p1 = 0;
   public p2 = 0;
   public p3 = 0;
@@ -29,6 +31,8 @@ export class BudgetServiceService {
   idiomas = 0;
 
   totalCost = 0;
+
+  searchByName = false;
 
   constructor() {}
 
@@ -131,5 +135,11 @@ export class BudgetServiceService {
    { 
   this.sortByDate()
   }
+  }
+
+  findByName(nameValue: string) {
+    this.searchByName = true;
+   this.filteredBudgets = this.budgets.filter(budget => budget.budgetName === nameValue);
+   console.log("filtered budgets",this.filteredBudgets)
   }
 }

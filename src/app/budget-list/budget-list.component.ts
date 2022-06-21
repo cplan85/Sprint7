@@ -11,6 +11,8 @@ export class BudgetListComponent implements OnInit {
 
   budgets = this.budgetService.budgets;
 
+  filteredBudgets = this.budgetService.filteredBudgets;
+
   ngOnInit(): void {}
 
   displayedColumns: string[] = [
@@ -22,6 +24,7 @@ export class BudgetListComponent implements OnInit {
     'totalCost',
   ];
   dataSource = this.budgets;
+  searchByName = this.budgetService.searchByName;
   sortAlphabetically() {
     this.budgetService.sortAlphabetically();
   }
@@ -31,6 +34,7 @@ export class BudgetListComponent implements OnInit {
   }
 
   resetBudgets() {
+    this.searchByName =!this.searchByName
     this.budgetService.resetBudgets();
   }
 }

@@ -1,0 +1,13 @@
+<p>budget-finder works!</p>
+
+<form [formGroup]="budgetFinder" (ngSubmit)="send(budgetFinder.value)">
+  
+    <mat-form-field color="white" class="example-full-width" appearance="fill">
+      <mat-label id="search-label"> Find by Budget Name</mat-label>
+      <input  color="red" [ngModel]="queryName" type="text" formControlName="queryName" matInput placeholder="My Budget" required>
+    </mat-form-field>
+    <br/>
+
+    <button mat-raised-button color="warn" [disabled]="budgetFinder.invalid" class="btn btn-primary" type="submit">Find Budget</button>
+</form>
+
