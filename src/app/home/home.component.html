@@ -9,21 +9,28 @@
           <h4>Select your Website Services</h4>
           <p><mat-checkbox 
             [routerLink]="['/home']" 
-            [queryParams]="{paginaWeb: !this.serviceOfferings.value['paginaWeb']}"
+            [queryParams]="queryParameters"
             (change)="togglePrice(prices[0])" 
+            bindQueryParam="paginaWeb"
             formControlName="paginaWeb" 
+            
             color="primary">Una pàgina web (500 €)</mat-checkbox></p>
       
           <div *ngIf="this.serviceOfferings.value['paginaWeb']"><app-panel></app-panel></div>
           <p><mat-checkbox 
             [routerLink]="['/home']" 
             [queryParams]="{consultoriaSEO: !this.serviceOfferings.value['consultoriaSEO']}"
+            bindQueryParam="consultoriaSEO"
             
             (change)="togglePrice(prices[1])" formControlName="consultoriaSEO" color="warn">Una consultoria SEO(300 €)</mat-checkbox></p>
-          <p><mat-checkbox (change)="togglePrice(prices[2])" formControlName="companyaGoogleAds">Una campanya de Google Ads (200 €)</mat-checkbox></p>
+          <p><mat-checkbox 
+             bindQueryParam="companyaGoogleAds"
+            (change)="togglePrice(prices[2])" formControlName="companyaGoogleAds">Una campanya de Google Ads (200 €)</mat-checkbox></p>
           
           <small>Pagina Web</small>
-          <mat-progress-bar mode="determinate" value="{{budgetService.p1/budgetService.totalCost* 100}}"></mat-progress-bar>
+          <mat-progress-bar
+           mode="determinate" 
+           value="{{budgetService.p1/budgetService.totalCost* 100}}"></mat-progress-bar>
           <small>{{budgetService.webpages}} Paginas</small>
           <mat-progress-bar mode="determinate" value="{{(budgetService.p4*budgetService.webpages) /budgetService.totalCost* 100}}"></mat-progress-bar>
           <small>{{budgetService.idiomas}} Idiomas</small>

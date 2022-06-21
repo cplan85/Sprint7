@@ -19,6 +19,8 @@ import { BudgetListComponent } from './budget-list/budget-list.component';
 import { SaveInputsComponent } from './save-inputs/save-inputs.component';
 import { BudgetFinderComponent } from './budget-finder/budget-finder.component';
 
+import { BindQueryParamDirective } from './bindQueryParam.directive';
+
 const appRoutes: Routes = [
   { path: '', component: WelcomeScreenComponent },
   { path: 'home', component: HomeComponent },
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
     BudgetListComponent,
     SaveInputsComponent,
     BudgetFinderComponent,
+    BindQueryParamDirective,
   ],
   imports: [
     BrowserModule,

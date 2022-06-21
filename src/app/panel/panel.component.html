@@ -8,7 +8,15 @@
       </button>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Numero de paginas</mat-label>
-        <input [ngModel]="webpages" min="0" type="number" formControlName="numberoPaginas" (change)="addItem(prices[3])" matInput placeholder="type a number" required>
+        <input 
+        [ngModel]="webpages"
+         min="0" 
+        type="number" 
+        formControlName="numberoPaginas"
+        bindQueryParam="numberoPaginas"
+        (change)="addItem(prices[3])" 
+         matInput placeholder="type a number"
+        required>
       </mat-form-field>
 
    <!-- <input min="0" value="webpages" (change)="addItem(prices[3])" formControlName="numberoPaginas" type="number"> -->

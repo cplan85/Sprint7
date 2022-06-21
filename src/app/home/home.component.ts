@@ -21,6 +21,11 @@ export class HomeComponent implements OnInit {
     public budgetService: BudgetServiceService
   ) {}
 
+  public queryParameters = {
+    paginaWeb: this.serviceOfferings.value['paginaWeb'],
+    consultoriaSEO: this.serviceOfferings.value['consultoriaSEO'],
+  };
+
   webpages = this.budgetService.webpages;
   prices = this.budgetService.prices;
   ngOnInit(): void {}
