@@ -19,7 +19,21 @@ export class BudgetServiceService {
 
   originalBudgets: budgetItem[] = [];
 
-  filteredBudgets: budgetItem[] = [];
+  filteredBudgets: budgetItem[] = [
+    /* {
+      budgetName: 'aba',
+      companyaGoogleQuantiy: 0,
+      consultoriaSEOQuantity: 0,
+      customerName: 'adfa',
+      date: 'Tue, 21 Jun 2022 12:51:50 GMT',
+      dateRaw: 1655815910376,
+      idiomasQuantity: 0,
+      paginaWebQuantity: 0,
+      paginasQuantity: 0,
+      totalCost: 0,
+    },
+    */
+  ];
 
   public p1 = 0;
   public p2 = 0;
@@ -32,7 +46,7 @@ export class BudgetServiceService {
 
   totalCost = 0;
 
-  searchByName = false;
+  public searchByName = false;
 
   constructor() {}
 
@@ -48,6 +62,12 @@ export class BudgetServiceService {
       this.p3 +
       this.webpages * this.p4 +
       this.idiomas * this.p5;
+
+    //IF Web pages is not clicked then subcategories remain Zero
+    if (!itemChecked && item.name === 'paginaWeb') {
+      this.webpages = 0;
+      this.idiomas = 0;
+    }
   }
 
   addWebPrices(item: priceItem, formElement: FormGroup) {
@@ -110,7 +130,7 @@ export class BudgetServiceService {
       paginasQuantity: this.webpages,
       idiomasQuantity: this.idiomas,
       date: today.toUTCString(),
-      dateRaw: timeElapsed
+      dateRaw: timeElapsed,
     });
 
     console.log(`Budgets from Budget Services`, this.budgets);
@@ -118,28 +138,36 @@ export class BudgetServiceService {
 
   sortAlphabetically() {
     this.originalBudgets = [...this.budgets];
-    console.log(this.originalBudgets)
+    console.log(this.originalBudgets);
     return this.budgets.sort((a, b) =>
       a.budgetName.toLowerCase().localeCompare(b.budgetName.toLowerCase())
     );
   }
 
   sortByDate() {
-    return this.budgets.sort((a, b) =>
-    {return a.dateRaw-b.dateRaw }
-    );
+    return this.budgets.sort((a, b) => {
+      return a.dateRaw - b.dateRaw;
+    });
   }
 
   resetBudgets() {
-    if (this.originalBudgets.length !==0)
-   { 
-  this.sortByDate()
-  }
+    if (this.originalBudgets.length !== 0) {
+      this.searchByName = false;
+      this.budgets.splice(0, this.budgets.length);
+      this.budgets.push(...this.originalBudgets);
+    }
+    console.log(`SEARCH BY NAME FROM SERVICE`, this.searchByName);
   }
 
   findByName(nameValue: string) {
+    this.originalBudgets.splice(0, this.budgets.length);
+    this.originalBudgets.push(...this.budgets);
     this.searchByName = true;
-   this.filteredBudgets = this.budgets.filter(budget => budget.budgetName === nameValue);
-   console.log("filtered budgets",this.filteredBudgets)
+    let filteredItem = this.budgets.filter(
+      (budget) => budget.budgetName === nameValue
+    );
+
+    this.budgets.splice(0, this.budgets.length);
+    this.budgets.push(...filteredItem);
   }
 }

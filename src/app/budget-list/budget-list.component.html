@@ -1,14 +1,29 @@
 <div class="container">
     <h2>SAVED BUDGETS</h2>
 
-    <div class="example-button-container">
-        <button mat-mini-fab color="warn" (click)="resetBudgets()" aria-label="Example icon button with a filter list icon">
+    <div class="filter-button-container">
+        <button 
+        matTooltip="RESET"
+        matTooltipPosition="left"
+        mat-mini-fab color="warn" 
+        (click)="resetBudgets()" 
+        aria-label="Example icon button with a filter list icon">
           <mat-icon>loop</mat-icon>
         </button>
-        <button mat-mini-fab color="accent" (click)="sortAlphabetically()" aria-label="Example icon button with a filter list icon">
+        <button 
+        matTooltip="Sort Alphabetically"
+        matTooltipPosition="below"
+        mat-mini-fab color="accent" 
+        (click)="sortAlphabetically()" 
+        aria-label="Example icon button with a filter list icon">
             <mat-icon>sort_by_alpha</mat-icon>
           </button>
-          <button mat-mini-fab color="warn" (click)="sortByDate()" aria-label="Example icon button with a filter list icon">
+          <button
+          matTooltip="Sort by Date"
+        matTooltipPosition="right" 
+          mat-mini-fab color="warn" 
+          (click)="sortByDate()" 
+          aria-label="Example icon button with a filter list icon">
             <mat-icon>date_range</mat-icon>
           </button>
       </div>
@@ -16,7 +31,7 @@
       <app-budget-finder></app-budget-finder>
       
     
-    <div *ngIf="!searchByName; else filteredSearch">
+
       <div *ngFor="let budget of budgets; let i=index">
           <h2>{{i + 1}}</h2>
          Name: {{budget.budgetName}}
@@ -63,59 +78,11 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
       </div>
-    </div>
-
-    <ng-template #filteredSearch>
-
-      <div *ngFor="let budget of filteredBudgets; let i=index">
-        <h2>{{i + 1}}</h2>
-       Name: {{budget.budgetName}}
-       Customer: {{budget.customerName}}
-        Date: {{budget.date}}
-    
-        <table mat-table [dataSource]="[budget]" class="mat-elevation-z8">
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-    
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef> Web Site </th>
-              <td mat-cell *matCellDef="let element"> {{budget.paginaWebQuantity}} x 500€ </td>
-            </ng-container>
-    
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Web pages </th>
-              <td mat-cell *matCellDef="let element"> {{budget.paginasQuantity}} x 30€ </td>
-            </ng-container>
-    
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-              <th mat-header-cell *matHeaderCellDef> Idiomas </th>
-              <td mat-cell *matCellDef="let element"> {{budget.idiomasQuantity}} x 30€ </td>
-            </ng-container>
-    
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-              <th mat-header-cell *matHeaderCellDef> SEO </th>
-              <td mat-cell *matCellDef="let element"> {{budget.consultoriaSEOQuantity}} x 500€ </td>
-            </ng-container>
-            <ng-container matColumnDef="pages">
-                <th mat-header-cell *matHeaderCellDef> Google Ads pages </th>
-                <td mat-cell *matCellDef="let element"> {{budget.companyaGoogleQuantiy}} x 200€ </td>
-              </ng-container>
-            <ng-container matColumnDef="totalCost">
-                <th mat-header-cell *matHeaderCellDef> Total Cost </th>
-                <td mat-cell *matCellDef="let element"> {{budget.totalCost}} € </td>
-              </ng-container>
-    
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-    </div>
+  
 
 
-    </ng-template>
+
+  
 
 
 </div>

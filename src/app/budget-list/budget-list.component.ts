@@ -34,7 +34,7 @@ export class BudgetListComponent implements OnInit {
   }
 
   resetBudgets() {
-    this.searchByName =!this.searchByName
+    this.searchByName = !this.searchByName;
     this.budgetService.resetBudgets();
   }
 }

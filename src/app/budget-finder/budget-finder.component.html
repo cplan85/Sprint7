@@ -1,6 +1,6 @@
-<p>budget-finder works!</p>
 
-<form [formGroup]="budgetFinder" (ngSubmit)="send(budgetFinder.value)">
+
+<form [formGroup]="budgetFinder" (ngSubmit)="send()">
   
     <mat-form-field color="white" class="example-full-width" appearance="fill">
       <mat-label id="search-label"> Find by Budget Name</mat-label>
@@ -10,4 +10,15 @@
 
     <button mat-raised-button color="warn" [disabled]="budgetFinder.invalid" class="btn btn-primary" type="submit">Find Budget</button>
 </form>
+
+<div *ngIf="this.budgetService.searchByName; else startScreen">
+  Found {{budgets.length}} results.
+</div>
+
+<ng-template #startScreen>
+    <div id="search-results">
+    
+    </div>
+  </ng-template>
+
 
