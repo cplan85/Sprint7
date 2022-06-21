@@ -14,6 +14,10 @@
           
           <small>Pagina Web</small>
           <mat-progress-bar mode="determinate" value="{{budgetService.p1/budgetService.totalCost* 100}}"></mat-progress-bar>
+          <small>{{budgetService.webpages}} Paginas</small>
+          <mat-progress-bar mode="determinate" value="{{(budgetService.p4*budgetService.webpages) /budgetService.totalCost* 100}}"></mat-progress-bar>
+          <small>{{budgetService.idiomas}} Idiomas</small>
+          <mat-progress-bar mode="determinate" value="{{(budgetService.p5*budgetService.idiomas) /budgetService.totalCost* 100}}"></mat-progress-bar>
           <small>Consultoria SEO</small>
           <mat-progress-bar color="warn" mode="determinate" value="{{budgetService.p2/budgetService.totalCost* 100}}"></mat-progress-bar>
           <small>Google AD Companya</small>

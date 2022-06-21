@@ -2,13 +2,13 @@
     <h2>SAVED BUDGETS</h2>
 
     <div class="example-button-container">
-        <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
-          <mat-icon>filter_list</mat-icon>
+        <button mat-mini-fab color="warn" (click)="resetBudgets()" aria-label="Example icon button with a filter list icon">
+          <mat-icon>loop</mat-icon>
         </button>
         <button mat-mini-fab color="accent" (click)="sortAlphabetically()" aria-label="Example icon button with a filter list icon">
             <mat-icon>sort_by_alpha</mat-icon>
           </button>
-          <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+          <button mat-mini-fab color="warn" (click)="sortByDate()" aria-label="Example icon button with a filter list icon">
             <mat-icon>date_range</mat-icon>
           </button>
       </div>
@@ -16,8 +16,9 @@
     
     <div *ngFor="let budget of budgets; let i=index">
         <h2>{{i + 1}}</h2>
-        Budget Name: {{budget.budgetName}}
-        Customer Name: {{budget.customerName}}
+       Name: {{budget.budgetName}}
+       Customer: {{budget.customerName}}
+        Date: {{budget.date}}
     
         <table mat-table [dataSource]="[budget]" class="mat-elevation-z8">
 

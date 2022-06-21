@@ -25,4 +25,12 @@ export class BudgetListComponent implements OnInit {
   sortAlphabetically() {
     this.budgetService.sortAlphabetically();
   }
+
+  sortByDate() {
+    this.budgetService.sortByDate();
+  }
+
+  resetBudgets() {
+    this.budgetService.resetBudgets();
+  }
 }

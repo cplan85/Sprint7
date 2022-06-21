@@ -17,6 +17,8 @@ export class BudgetServiceService {
 
   budgets: budgetItem[] = [];
 
+  originalBudgets: budgetItem[] = [];
+
   public p1 = 0;
   public p2 = 0;
   public p3 = 0;
@@ -92,6 +94,8 @@ export class BudgetServiceService {
   }
 
   addBudgetItem(budgetName: string, customerName: string) {
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
     this.budgets.push({
       budgetName: budgetName,
       customerName: customerName,
@@ -101,14 +105,31 @@ export class BudgetServiceService {
       companyaGoogleQuantiy: this.p3 !== 0 ? 1 : 0,
       paginasQuantity: this.webpages,
       idiomasQuantity: this.idiomas,
+      date: today.toUTCString(),
+      dateRaw: timeElapsed
     });
 
     console.log(`Budgets from Budget Services`, this.budgets);
   }
 
   sortAlphabetically() {
+    this.originalBudgets = [...this.budgets];
+    console.log(this.originalBudgets)
     return this.budgets.sort((a, b) =>
       a.budgetName.toLowerCase().localeCompare(b.budgetName.toLowerCase())
     );
+  }
+
+  sortByDate() {
+    return this.budgets.sort((a, b) =>
+    {return a.dateRaw-b.dateRaw }
+    );
+  }
+
+  resetBudgets() {
+    if (this.originalBudgets.length !==0)
+   { 
+  this.sortByDate()
+  }
   }
 }

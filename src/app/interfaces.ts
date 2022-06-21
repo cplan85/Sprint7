@@ -13,6 +13,8 @@ export interface budgetItem {
   companyaGoogleQuantiy: number;
   paginasQuantity: number;
   idiomasQuantity: number;
+  date: string;
+  dateRaw: number;
 }
 
 type priceNames = 'p1' | 'p2' | 'p3' | 'p4' | 'p5';
