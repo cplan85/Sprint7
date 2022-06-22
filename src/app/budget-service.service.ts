@@ -19,9 +19,7 @@ export class BudgetServiceService {
 
   originalBudgets: budgetItem[] = [];
 
-  filteredBudgets: budgetItem[] = [
-
-  ];
+  filteredBudgets: budgetItem[] = [];
 
   public p1 = 0;
   public p2 = 0;
@@ -40,11 +38,11 @@ export class BudgetServiceService {
 
   calcPrice() {
     this.totalCost =
-    this.p1 +
-    this.p2 +
-    this.p3 +
-    this.webpages * this.p4 +
-    this.idiomas * this.p5;
+      this.p1 +
+      this.p2 +
+      this.p3 +
+      this.webpages * this.p4 +
+      this.idiomas * this.p5;
   }
 
   togglePrice(item: priceItem, formElement: FormGroup) {
@@ -53,7 +51,7 @@ export class BudgetServiceService {
 
     itemChecked ? (this[priceName] = item.price) : (this[priceName] = 0);
 
-   this.calcPrice();
+    this.calcPrice();
 
     //IF Web pages is not clicked then subcategories remain Zero
     if (!itemChecked && item.name === 'paginaWeb') {
@@ -67,40 +65,36 @@ export class BudgetServiceService {
     this[priceName] = item.price;
     this.calcPrice();
     //IF Web pages is not clicked then subcategories remain Zero
+  }
 
+  addParamWebPrices(item: priceItem, quantityValue: string) {
+    let itemAmount = parseInt(quantityValue);
+    if (itemAmount >= 0 && item.name === 'numberoPaginas') {
+      this.idiomas = this.idiomas;
+      this.webpages = itemAmount;
+      this.totalCost =
+        this.p1 +
+        this.p2 +
+        this.p3 +
+        itemAmount * item.price +
+        this.idiomas * this.p5;
+
+      console.log('TOTAL COST - PAGINAS from ParamWebPrices', this.totalCost);
     }
 
-    addParamWebPrices(item: priceItem, quantityValue: string) {
+    if (itemAmount >= 0 && item.name === 'numeroIdiomas') {
+      this.idiomas = itemAmount;
+      this.webpages = this.webpages;
+      this.totalCost =
+        this.p1 +
+        this.p2 +
+        this.p3 +
+        this.webpages * this.p4 +
+        itemAmount * item.price;
 
-      let itemAmount = parseInt(quantityValue);
-      if (itemAmount >= 0 && item.name === 'numberoPaginas') {
-        console.log("CHECKING PARAM FUNCTION",itemAmount, item.name)
-        this.idiomas = this.idiomas;
-        this.webpages = itemAmount;
-        this.totalCost =
-          this.p1 +
-          this.p2 +
-          this.p3 +
-          itemAmount * item.price +
-          this.idiomas * this.p5;
-
-          console.log("TOTAL COST PAGINAS", this.totalCost)
-      }
-  
-      if (itemAmount >= 0 && item.name === 'numeroIdiomas') {
-        this.idiomas = itemAmount;
-        this.webpages = this.webpages;
-        this.totalCost =
-          this.p1 +
-          this.p2 +
-          this.p3 +
-          this.webpages * this.p4 +
-          itemAmount * item.price;
-
-          console.log("TOTAL COST IDIOMAS", this.totalCost)
-      }
+      console.log('TOTAL COST - IDIOMAS from ParamWebPrices', this.totalCost);
     }
-  
+  }
 
   addWebPrices(item: priceItem, formElement: FormGroup) {
     let itemAmount = formElement.value[item.name];

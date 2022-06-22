@@ -6,10 +6,10 @@
       color="warn"><mat-icon>home</mat-icon></a>
       <section class="check-boxes" [formGroup]="serviceOfferings">
         <h2>BUDGET</h2>
-          <h4>Select your Website Services</h4>
+          <h4>Seleccioneu els vostres serveis web</h4>
           <p><mat-checkbox 
             [routerLink]="['/home']" 
-            [queryParams]="queryParameters"
+            [queryParams]="this.queryP.queryParameters"
             (change)="togglePrice(prices[0])" 
             bindQueryParam="paginaWeb"
             formControlName="paginaWeb" 
@@ -19,13 +19,16 @@
           <div *ngIf="this.serviceOfferings.value['paginaWeb']"><app-panel></app-panel></div>
           <p><mat-checkbox 
             [routerLink]="['/home']" 
-            [queryParams]="{consultoriaSEO: !this.serviceOfferings.value['consultoriaSEO']}"
+            [queryParams]="this.queryP.queryParameters"
             bindQueryParam="consultoriaSEO"
             
             (change)="togglePrice(prices[1])" formControlName="consultoriaSEO" color="warn">Una consultoria SEO(300 €)</mat-checkbox></p>
           <p><mat-checkbox 
+            [routerLink]="['/home']" 
+            [queryParams]="this.queryP.queryParameters"
              bindQueryParam="companyaGoogleAds"
-            (change)="togglePrice(prices[2])" formControlName="companyaGoogleAds">Una campanya de Google Ads (200 €)</mat-checkbox></p>
+            (change)="togglePrice(prices[2])" 
+            formControlName="companyaGoogleAds">Una campanya de Google Ads (200 €)</mat-checkbox></p>
           
           <small>Pagina Web</small>
           <mat-progress-bar
@@ -44,7 +47,7 @@
         <section class="example-section" [formGroup]="serviceOfferings">
       
           <h2>SAVE BUDGET HERE</h2>
-          <p>If you're satisfied with your budget, give it a name and provide your customer information.</p>
+          <p>Estalvieu el vostre pressupost posant-li un nom i proporcionant la informació del vostre client.</p>
       
           <app-save-inputs></app-save-inputs>
       

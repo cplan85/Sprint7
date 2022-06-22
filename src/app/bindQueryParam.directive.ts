@@ -10,11 +10,11 @@ export class BindQueryParamDirective {
   function!: Function;
 
   public totalCost = this.budgetService.totalCost;
- 
 
-  constructor(private ngControl: NgControl,
+  constructor(
+    private ngControl: NgControl,
     public budgetService: BudgetServiceService
-    ) {}
+  ) {}
 
   ngOnInit() {
     const queryParams = new URLSearchParams(location.search);
@@ -25,24 +25,21 @@ export class BindQueryParamDirective {
       //http://localhost:4200/home?paginaWeb=true&consultoriaSEO=true&companyaGoogleAds=true
       //http://localhost:4200/home?paginaWeb=true&companyaGoogleAds=true
       //http://localhost:4200/home?paginaWeb=true&consultoriaSEO=true&numberoPaginas=11&companyaGoogleAds=true&numeroIdiomas=15
-      if (value === 'true')
-       { this.ngControl.control!.patchValue(queryParams.get(this.paramKey));
+      if (value === 'true') {
+        this.ngControl.control!.patchValue(queryParams.get(this.paramKey));
         return this.budgetService.prices.forEach((price) => {
           if (price.name == this.paramKey) {
             this.budgetService.toggleParamPrice(price);
           }
-        })
-  
-      } if ( /^\d+$/.test(value)) {
-        console.log("if Number statement", value, this.paramKey)
+        });
+      }
+      if (/^\d+$/.test(value)) {
         this.ngControl.control!.patchValue(queryParams.get(this.paramKey));
         return this.budgetService.prices.forEach((price) => {
-          
           if (price.name == this.paramKey) {
-      
-           return this.budgetService.addParamWebPrices(price, value);
+            return this.budgetService.addParamWebPrices(price, value);
           }
-        })
+        });
       }
     }
   }

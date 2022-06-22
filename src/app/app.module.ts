@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { PanelComponent } from './panel/panel.component';
 
 import { BudgetServiceService } from './budget-service.service';
+import { QueryParametersService } from './query-parameters.service';
 import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
 import { InfoIdiomasDialog } from './panel/panel.component';
 import { InfoPaginasDialog } from './panel/panel.component';
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
   ],
-  providers: [BudgetServiceService],
+  providers: [BudgetServiceService, QueryParametersService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

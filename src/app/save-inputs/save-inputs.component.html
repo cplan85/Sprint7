@@ -1,14 +1,14 @@
 <form [formGroup]="saveInputsForm" (ngSubmit)="send(saveInputsForm.value)">
   
       <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label> Hombre de presuppusto</mat-label>
+        <mat-label> Nom del pressupost</mat-label>
         <input [ngModel]="budgetName" type="text" formControlName="budgetName" matInput placeholder="Expensive Website" required>
       </mat-form-field>
       <br/>
 
 
       <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Customer</mat-label>
+        <mat-label>Client</mat-label>
         <input [ngModel]="customerName" type="text" formControlName="customerName"  matInput placeholder="John Doe" required>
       </mat-form-field>
       <br/>
