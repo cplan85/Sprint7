@@ -20,19 +20,7 @@ export class BudgetServiceService {
   originalBudgets: budgetItem[] = [];
 
   filteredBudgets: budgetItem[] = [
-    /* {
-      budgetName: 'aba',
-      companyaGoogleQuantiy: 0,
-      consultoriaSEOQuantity: 0,
-      customerName: 'adfa',
-      date: 'Tue, 21 Jun 2022 12:51:50 GMT',
-      dateRaw: 1655815910376,
-      idiomasQuantity: 0,
-      paginaWebQuantity: 0,
-      paginasQuantity: 0,
-      totalCost: 0,
-    },
-    */
+
   ];
 
   public p1 = 0;
@@ -50,18 +38,22 @@ export class BudgetServiceService {
 
   constructor() {}
 
+  calcPrice() {
+    this.totalCost =
+    this.p1 +
+    this.p2 +
+    this.p3 +
+    this.webpages * this.p4 +
+    this.idiomas * this.p5;
+  }
+
   togglePrice(item: priceItem, formElement: FormGroup) {
     let priceName = item.priceName;
     let itemChecked = formElement.value[item.name];
 
     itemChecked ? (this[priceName] = item.price) : (this[priceName] = 0);
 
-    this.totalCost =
-      this.p1 +
-      this.p2 +
-      this.p3 +
-      this.webpages * this.p4 +
-      this.idiomas * this.p5;
+   this.calcPrice();
 
     //IF Web pages is not clicked then subcategories remain Zero
     if (!itemChecked && item.name === 'paginaWeb') {
@@ -69,6 +61,46 @@ export class BudgetServiceService {
       this.idiomas = 0;
     }
   }
+
+  toggleParamPrice(item: priceItem) {
+    let priceName = item.priceName;
+    this[priceName] = item.price;
+    this.calcPrice();
+    //IF Web pages is not clicked then subcategories remain Zero
+
+    }
+
+    addParamWebPrices(item: priceItem, quantityValue: string) {
+
+      let itemAmount = parseInt(quantityValue);
+      if (itemAmount >= 0 && item.name === 'numberoPaginas') {
+        console.log("CHECKING PARAM FUNCTION",itemAmount, item.name)
+        this.idiomas = this.idiomas;
+        this.webpages = itemAmount;
+        this.totalCost =
+          this.p1 +
+          this.p2 +
+          this.p3 +
+          itemAmount * item.price +
+          this.idiomas * this.p5;
+
+          console.log("TOTAL COST PAGINAS", this.totalCost)
+      }
+  
+      if (itemAmount >= 0 && item.name === 'numeroIdiomas') {
+        this.idiomas = itemAmount;
+        this.webpages = this.webpages;
+        this.totalCost =
+          this.p1 +
+          this.p2 +
+          this.p3 +
+          this.webpages * this.p4 +
+          itemAmount * item.price;
+
+          console.log("TOTAL COST IDIOMAS", this.totalCost)
+      }
+    }
+  
 
   addWebPrices(item: priceItem, formElement: FormGroup) {
     let itemAmount = formElement.value[item.name];
@@ -98,23 +130,12 @@ export class BudgetServiceService {
   addPage(type: webServiceNames) {
     if (type === 'webpages') this.webpages++;
     if (type === 'idiomas') this.idiomas++;
-    this.totalCost =
-      this.p1 +
-      this.p2 +
-      this.p3 +
-      this.webpages * this.p4 +
-      this.idiomas * this.p5;
+    this.calcPrice();
   }
   removePage(type: webServiceNames) {
     if (type === 'webpages' && this.webpages > 0) this.webpages--;
     if (type === 'idiomas' && this.idiomas > 0) this.idiomas--;
-
-    this.totalCost =
-      this.p1 +
-      this.p2 +
-      this.p3 +
-      this.webpages * this.p4 +
-      this.idiomas * this.p5;
+    this.calcPrice();
   }
 
   addBudgetItem(budgetName: string, customerName: string) {

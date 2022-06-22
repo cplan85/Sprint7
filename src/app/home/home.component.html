@@ -39,7 +39,7 @@
           <mat-progress-bar color="warn" mode="determinate" value="{{budgetService.p2/budgetService.totalCost* 100}}"></mat-progress-bar>
           <small>Google AD Companya</small>
           <mat-progress-bar color="accent" mode="determinate" value="{{budgetService.p3/budgetService.totalCost* 100}}"></mat-progress-bar>
-          <h4> PREU: {{budgetService.totalCost}} €</h4>
+          <h4> PREU: {{this.budgetService.totalCost}} €</h4>
         </section>
         <section class="example-section" [formGroup]="serviceOfferings">
       

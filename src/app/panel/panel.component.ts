@@ -34,29 +34,24 @@ export class PanelComponent implements OnInit {
   InfoIdiomasDialog = InfoIdiomasDialog;
 
   send(values: any) {
-    console.log(values);
+    console.log("Values from Panel",values);
   }
 
   addItem(item: priceItem) {
     this.budgetService.addWebPrices(item, this.paginaWebForm);
     //THE KEY IS HERE. MAKE SURE TO update local webpage to service webpage or idioma!
-    this.webpages = this.budgetService.webpages;
-    this.idiomas = this.budgetService.idiomas;
+   
   }
 
   addPage(type: webServiceNames) {
+    //HERE THERE IS DOUBLE ADDING
     this.budgetService.addPage(type);
-    type === 'webpages' ? this.webpages++ : this.idiomas++;
+    //type === 'webpages' ? this.budgetService.webpages++ : this.budgetService.idiomas++;
   }
 
   removePage(type: webServiceNames) {
     this.budgetService.removePage(type);
-    if (type === 'webpages' && this.webpages > 0) {
-      this.webpages--;
-    }
-    if (type === 'idiomas' && this.idiomas > 0) {
-      this.idiomas--;
-    }
+
   }
 
   openDialog(component: any) {
