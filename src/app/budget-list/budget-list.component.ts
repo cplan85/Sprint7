@@ -12,7 +12,10 @@ export class BudgetListComponent implements OnInit {
   budgets = this.budgetService.budgets;
 
   budgetsMobile = this.budgetService.budgetsMobile;
-  
+
+  //new code tried on Jun 23rd
+  storageBudgets = localStorage.getItem('budgets');
+  parsedLocalBudgets = JSON.parse(this.storageBudgets!);
 
   filteredBudgets = this.budgetService.filteredBudgets;
 

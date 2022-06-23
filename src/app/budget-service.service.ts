@@ -17,7 +17,7 @@ export class BudgetServiceService {
 
   budgets: budgetItem[] = [];
 
-  budgetsMobile: any[] =[];
+  budgetsMobile: any[] = [];
 
   originalBudgets: budgetItem[] = [];
 
@@ -150,16 +150,55 @@ export class BudgetServiceService {
       dateRaw: timeElapsed,
     });
 
-    this.budgetsMobile.push(
-      [{position: 1, name: 'Pagina Web', quantity: this.p1 !== 0 ? 1 : 0, subtotal: (this.p1 !== 0 ? 1 : 0) * this.p1 },
-      {position: 2, name: '# Paginas', quantity: this.webpages, subtotal: (this.webpages * this.p4) },
-      {position: 3, name: '# Idiomas', quantity: this.idiomas, subtotal: (this.idiomas * this.p5) },
-      {position: 4, name: 'Consultoria SEO', quantity: this.p2 !== 0 ? 1 : 0, subtotal: `${(this.p2 !== 0 ? 1 : 0) * this.p2} ` },
-      {position: 5, name: 'Companya Google', quantity: this.p3 !== 0 ? 1 : 0, subtotal: (this.p3 !== 0 ? 1 : 0) * this.p3 },
-      {position: 6, name: 'Total', quantity: "", subtotal: this.totalCost }, ] 
-    )
-      console.log("budgetsMobile ",this.budgetsMobile)
+    this.budgetsMobile.push([
+      {
+        position: 1,
+        name: 'Pagina Web',
+        quantity: this.p1 !== 0 ? 1 : 0,
+        subtotal: (this.p1 !== 0 ? 1 : 0) * this.p1,
+      },
+      {
+        position: 2,
+        name: '# Paginas',
+        quantity: this.webpages,
+        subtotal: this.webpages * this.p4,
+      },
+      {
+        position: 3,
+        name: '# Idiomas',
+        quantity: this.idiomas,
+        subtotal: this.idiomas * this.p5,
+      },
+      {
+        position: 4,
+        name: 'Consultoria SEO',
+        quantity: this.p2 !== 0 ? 1 : 0,
+        subtotal: `${(this.p2 !== 0 ? 1 : 0) * this.p2} `,
+      },
+      {
+        position: 5,
+        name: 'Companya Google',
+        quantity: this.p3 !== 0 ? 1 : 0,
+        subtotal: (this.p3 !== 0 ? 1 : 0) * this.p3,
+      },
+      { position: 6, name: 'Total', quantity: '', subtotal: this.totalCost },
+    ]);
+    console.log('budgetsMobile ', this.budgetsMobile);
+
+    //localStorage
+    this.storeBudgets();
   }
+
+  //START LOCAL STORAGE
+  key: string = 'budgets';
+  myItem: string | null = '';
+
+  storeBudgets() {
+    localStorage.setItem(this.key, JSON.stringify(this.budgets));
+    this.myItem = localStorage.getItem(this.key);
+  }
+
+  //END LOCAL STORAGE
 
   sortAlphabetically() {
     this.originalBudgets = [...this.budgets];

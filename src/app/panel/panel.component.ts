@@ -31,12 +31,22 @@ export class PanelComponent implements OnInit {
   }
 
   goPaginasWeb() {
-    this.router.navigate(['/home'], { queryParams: { numberoPaginas: this.budgetService.webpages, numeroIdiomas:this.budgetService.idiomas  }, queryParamsHandling: 'merge' });
+    this.router.navigate(['/home'], {
+      queryParams: {
+        numberoPaginas: this.budgetService.webpages,
+        numeroIdiomas: this.budgetService.idiomas,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       console.log('Query Params:', queryParams);
+      // console.log(`testingQuery`, parseInt(queryParams['numberoPaginas']));
+
+      // this.budgetService.webpages = parseInt(queryParams['numberoPaginas']);
+      console.log(this.budgetService.totalCost);
     });
     this.activatedRoute.params.subscribe((params) => {
       console.log('Regular Params:', params);
@@ -50,16 +60,13 @@ export class PanelComponent implements OnInit {
   InfoIdiomasDialog = InfoIdiomasDialog;
 
   send(values: any) {
-    console.log("Values from Panel",values);
+    console.log('Values from Panel', values);
   }
-
-  
 
   addItem(item: priceItem) {
     this.budgetService.addWebPrices(item, this.paginaWebForm);
     this.goPaginasWeb();
     //THE KEY IS HERE. MAKE SURE TO update local webpage to service webpage or idioma!
-   
   }
 
   addPage(type: webServiceNames) {
@@ -72,7 +79,6 @@ export class PanelComponent implements OnInit {
   removePage(type: webServiceNames) {
     this.budgetService.removePage(type);
     this.goPaginasWeb();
-
   }
 
   openDialog(component: any) {
