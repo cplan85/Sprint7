@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { priceItem, budgetItem } from './interfaces';
 import { FormGroup } from '@angular/forms';
 import { webServiceNames } from './interfaces';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,26 @@ export class BudgetServiceService {
     { name: 'numberoPaginas', priceName: 'p4', price: 30 },
     { name: 'numeroIdiomas', priceName: 'p4', price: 30 },
   ];
+
+  private subject = new Subject<any>();
+
+  private subject2 = new Subject<any>();
+
+  sendClickEvent() {
+    this.subject.next(this.p1);
+  }
+
+  sendPageChangeEvent() {
+    this.subject2.next(this.webpages);
+  }
+
+  getClickEvent(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
+  getPageChangeEvent(): Observable<any> {
+    return this.subject2.asObservable();
+  }
 
   budgets: budgetItem[] = [];
 
@@ -220,7 +241,6 @@ export class BudgetServiceService {
       this.budgets.splice(0, this.budgets.length);
       this.budgets.push(...this.originalBudgets);
     }
-    console.log(`SEARCH BY NAME FROM SERVICE`, this.searchByName);
   }
 
   findByName(nameValue: string) {

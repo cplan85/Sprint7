@@ -21,6 +21,9 @@ import { SaveInputsComponent } from './save-inputs/save-inputs.component';
 import { BudgetFinderComponent } from './budget-finder/budget-finder.component';
 
 import { BindQueryParamDirective } from './bindQueryParam.directive';
+import { DonutChartComponent } from './donut-chart/donut-chart.component';
+
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeScreenComponent },
@@ -39,6 +42,7 @@ const appRoutes: Routes = [
     SaveInputsComponent,
     BudgetFinderComponent,
     BindQueryParamDirective,
+    DonutChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +53,7 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
+    NgApexchartsModule,
   ],
   providers: [BudgetServiceService, QueryParametersService],
   bootstrap: [AppComponent],

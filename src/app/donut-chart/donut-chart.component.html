@@ -1,0 +1,20 @@
+<div id="chart">
+  <button 
+  matTooltip="Toggle Pie Chart"
+  matTooltipPosition="left"
+  mat-mini-fab color="warn" 
+  (click)="togglePieChart()"
+  aria-label="Icon button with a pie chart icon">
+  <mat-icon> pie_chart</mat-icon>
+  </button>
+    <apx-chart *ngIf="showPieChart; else falseCondition"
+    [colors]="colors"
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [labels]="chartOptions.labels"
+    [responsive]="chartOptions.responsive"
+    ></apx-chart>
+
+    <ng-template #falseCondition>
+    </ng-template>
+  </div>

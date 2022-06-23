@@ -31,6 +31,7 @@ export class PanelComponent implements OnInit {
   }
 
   goPaginasWeb() {
+    this.budgetService.sendPageChangeEvent();
     this.router.navigate(['/home'], {
       queryParams: {
         numberoPaginas: this.budgetService.webpages,
@@ -40,11 +41,27 @@ export class PanelComponent implements OnInit {
     });
   }
 
+  goPaginasWebInit(paginas: number, idiomas: number) {
+    this.budgetService.sendPageChangeEvent();
+    this.router.navigate(['/home'], {
+      queryParams: {
+        numberoPaginas: paginas,
+        numeroIdiomas: idiomas,
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
+
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
-      console.log('Query Params:', queryParams);
-      // console.log(`testingQuery`, parseInt(queryParams['numberoPaginas']));
+      let numberPaginas = parseInt(queryParams['numberoPaginas']);
+      let numberIdiomas = parseInt(queryParams['numeroIdiomas']);
+      console.log('113', isNaN(numberPaginas));
 
+      this.goPaginasWebInit(
+        isNaN(numberPaginas) ? 0 : numberPaginas,
+        isNaN(numberIdiomas) ? 0 : numberIdiomas
+      );
       // this.budgetService.webpages = parseInt(queryParams['numberoPaginas']);
       console.log(this.budgetService.totalCost);
     });
@@ -66,6 +83,9 @@ export class PanelComponent implements OnInit {
   addItem(item: priceItem) {
     this.budgetService.addWebPrices(item, this.paginaWebForm);
     this.goPaginasWeb();
+    this.budgetService.sendClickEvent();
+    this.budgetService.sendPageChangeEvent();
+
     //THE KEY IS HERE. MAKE SURE TO update local webpage to service webpage or idioma!
   }
 
@@ -73,12 +93,15 @@ export class PanelComponent implements OnInit {
     //HERE THERE IS DOUBLE ADDING
     this.budgetService.addPage(type);
     this.goPaginasWeb();
+    this.budgetService.sendClickEvent();
+
     //type === 'webpages' ? this.budgetService.webpages++ : this.budgetService.idiomas++;
   }
 
   removePage(type: webServiceNames) {
     this.budgetService.removePage(type);
     this.goPaginasWeb();
+    this.budgetService.sendClickEvent();
   }
 
   openDialog(component: any) {

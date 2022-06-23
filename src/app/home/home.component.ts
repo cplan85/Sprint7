@@ -5,6 +5,7 @@ import { BudgetServiceService } from '../budget-service.service';
 import { QueryParametersService } from '../query-parameters.service';
 
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -19,12 +20,21 @@ export class HomeComponent implements OnInit {
     companyaGoogleAds: false,
   });
 
+  clickEventsubscription: Subscription;
+
   constructor(
     private _formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     public budgetService: BudgetServiceService,
     public queryP: QueryParametersService
-  ) {}
+  ) {
+    this.clickEventsubscription = this.budgetService
+      .getPageChangeEvent()
+      .subscribe(() => {
+        this.budgetService.calcPrice();
+        console.log('subscribe total cost', this.budgetService.totalCost);
+      });
+  }
 
   webpages = this.budgetService.webpages;
   prices = this.budgetService.prices;
@@ -40,5 +50,6 @@ export class HomeComponent implements OnInit {
   togglePrice(item: priceItem) {
     this.budgetService.togglePrice(item, this.serviceOfferings);
     this.queryP.changeQueryParameters();
+    this.budgetService.sendClickEvent();
   }
 }

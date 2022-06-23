@@ -46,9 +46,9 @@
           <small>Google AD Companya</small>
           <mat-progress-bar color="accent" mode="determinate" value="{{budgetService.p3/budgetService.totalCost* 100}}"></mat-progress-bar>
           <h4> PREU: {{this.budgetService.totalCost}} €</h4>
+          <app-donut-chart></app-donut-chart>
         </section>
-        <section class="example-section" [formGroup]="serviceOfferings">
-      
+        <section class="example-section">
           <h2>SAVE BUDGET HERE</h2>
           <p>Estalvieu el vostre pressupost posant-li un nom i proporcionant la informació del vostre client.</p>
       
