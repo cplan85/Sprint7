@@ -9,7 +9,8 @@
           <h4>Seleccioneu els vostres serveis web</h4>
           <p><mat-checkbox 
             [routerLink]="['/home']" 
-            [queryParams]="this.queryP.queryParameters"
+            [queryParams]="{paginaWeb: !this.serviceOfferings.value['paginaWeb']}"
+            queryParamsHandling="merge"
             (change)="togglePrice(prices[0])" 
             bindQueryParam="paginaWeb"
             formControlName="paginaWeb" 
@@ -19,13 +20,15 @@
           <div *ngIf="this.serviceOfferings.value['paginaWeb']"><app-panel></app-panel></div>
           <p><mat-checkbox 
             [routerLink]="['/home']" 
-            [queryParams]="this.queryP.queryParameters"
+            [queryParams]="{consultoriaSEO: !this.serviceOfferings.value['consultoriaSEO']}"
+            queryParamsHandling="merge"
             bindQueryParam="consultoriaSEO"
             
             (change)="togglePrice(prices[1])" formControlName="consultoriaSEO" color="warn">Una consultoria SEO(300 €)</mat-checkbox></p>
           <p><mat-checkbox 
             [routerLink]="['/home']" 
-            [queryParams]="this.queryP.queryParameters"
+            [queryParams]="{companyaGoogleAds: !this.serviceOfferings.value['companyaGoogleAds']}"
+            queryParamsHandling="merge"
              bindQueryParam="companyaGoogleAds"
             (change)="togglePrice(prices[2])" 
             formControlName="companyaGoogleAds">Una campanya de Google Ads (200 €)</mat-checkbox></p>

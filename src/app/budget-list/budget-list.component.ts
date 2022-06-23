@@ -11,19 +11,31 @@ export class BudgetListComponent implements OnInit {
 
   budgets = this.budgetService.budgets;
 
+  budgetsMobile = this.budgetService.budgetsMobile;
+  
+
   filteredBudgets = this.budgetService.filteredBudgets;
 
   ngOnInit(): void {}
 
   displayedColumns: string[] = [
-    'position',
-    'name',
-    'weight',
-    'symbol',
+    'sitioWeb',
+    'paginasQuantity',
+    'idiomas',
+    'seo',
     'pages',
     'totalCost',
   ];
+
+  displayedColumnsMobile: string[] = [
+    'position',
+    'name',
+    'quantity',
+    'subtotal',
+  ];
   dataSource = this.budgets;
+  dataSourceMobile = this.budgetService.budgetsMobile;
+
   searchByName = this.budgetService.searchByName;
   sortAlphabetically() {
     this.budgetService.sortAlphabetically();

@@ -17,6 +17,8 @@ export class BudgetServiceService {
 
   budgets: budgetItem[] = [];
 
+  budgetsMobile: any[] =[];
+
   originalBudgets: budgetItem[] = [];
 
   filteredBudgets: budgetItem[] = [];
@@ -148,7 +150,15 @@ export class BudgetServiceService {
       dateRaw: timeElapsed,
     });
 
-    console.log(`Budgets from Budget Services`, this.budgets);
+    this.budgetsMobile.push(
+      [{position: 1, name: 'Pagina Web', quantity: this.p1 !== 0 ? 1 : 0, subtotal: (this.p1 !== 0 ? 1 : 0) * this.p1 },
+      {position: 2, name: '# Paginas', quantity: this.webpages, subtotal: (this.webpages * this.p4) },
+      {position: 3, name: '# Idiomas', quantity: this.idiomas, subtotal: (this.idiomas * this.p5) },
+      {position: 4, name: 'Consultoria SEO', quantity: this.p2 !== 0 ? 1 : 0, subtotal: `${(this.p2 !== 0 ? 1 : 0) * this.p2} ` },
+      {position: 5, name: 'Companya Google', quantity: this.p3 !== 0 ? 1 : 0, subtotal: (this.p3 !== 0 ? 1 : 0) * this.p3 },
+      {position: 6, name: 'Total', quantity: "", subtotal: this.totalCost }, ] 
+    )
+      console.log("budgetsMobile ",this.budgetsMobile)
   }
 
   sortAlphabetically() {

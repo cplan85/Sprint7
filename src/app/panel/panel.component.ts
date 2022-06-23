@@ -5,6 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { BudgetServiceService } from '../budget-service.service';
 import { priceItem } from '../interfaces';
 import { webServiceNames } from '../interfaces';
+import { Router } from '@angular/router';
+
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-panel',
@@ -17,7 +20,9 @@ export class PanelComponent implements OnInit {
   constructor(
     private _builder: FormBuilder,
     public budgetService: BudgetServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.paginaWebForm = this._builder.group({
       numberoPaginas: ['', Validators.required],
@@ -25,7 +30,18 @@ export class PanelComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  goPaginasWeb() {
+    this.router.navigate(['/home'], { queryParams: { numberoPaginas: this.budgetService.webpages, numeroIdiomas:this.budgetService.idiomas  }, queryParamsHandling: 'merge' });
+  }
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      console.log('Query Params:', queryParams);
+    });
+    this.activatedRoute.params.subscribe((params) => {
+      console.log('Regular Params:', params);
+    });
+  }
 
   prices = this.budgetService.prices;
   webpages = this.budgetService.webpages;
@@ -37,8 +53,11 @@ export class PanelComponent implements OnInit {
     console.log("Values from Panel",values);
   }
 
+  
+
   addItem(item: priceItem) {
     this.budgetService.addWebPrices(item, this.paginaWebForm);
+    this.goPaginasWeb();
     //THE KEY IS HERE. MAKE SURE TO update local webpage to service webpage or idioma!
    
   }
@@ -46,11 +65,13 @@ export class PanelComponent implements OnInit {
   addPage(type: webServiceNames) {
     //HERE THERE IS DOUBLE ADDING
     this.budgetService.addPage(type);
+    this.goPaginasWeb();
     //type === 'webpages' ? this.budgetService.webpages++ : this.budgetService.idiomas++;
   }
 
   removePage(type: webServiceNames) {
     this.budgetService.removePage(type);
+    this.goPaginasWeb();
 
   }
 

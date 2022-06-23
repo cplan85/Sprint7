@@ -8,6 +8,10 @@
     overflow-y: hidden;
 }
 
+#mobile-table {
+    display:none
+}
+
 table {
     width: 100%;
 }
@@ -22,6 +26,12 @@ table {
     .container {
 
       padding-left:4rem;
-      width:100%;
+      width:80%;
+    }
+
+  
+
+    table {
+        width: 90%;
     }
 }
