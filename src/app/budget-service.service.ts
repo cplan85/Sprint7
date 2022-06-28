@@ -4,7 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { webServiceNames } from './interfaces';
 import { Observable, Subject } from 'rxjs';
 import { WebStorageService } from './services/web-storage.service';
-import { BudgetListService } from './budget-list/budget-list.service';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +45,9 @@ export class BudgetServiceService {
 
   budgetsMobile: any[] = [];
 
-  originalBudgets: budgetItem[] = [];
+  originalBudgets: budgetItem[] = JSON.parse(
+    this.localStorageBudgets == null ? '[]' : this.localStorageBudgets
+  );
 
   filteredBudgets: budgetItem[] = [];
 
@@ -222,6 +223,8 @@ export class BudgetServiceService {
   clearAllBudgets() {
     this.budgets.splice(0, this.budgets.length);
     this.webstorageService.set('budgets', '[]');
+
+    this.originalBudgets.splice(0, this.originalBudgets.length);
   }
 
   sortAlphabetically() {
