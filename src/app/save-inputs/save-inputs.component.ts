@@ -27,8 +27,6 @@ export class SaveInputsComponent implements OnInit {
   ngOnInit(): void {}
 
   send(values: any) {
-    console.log(values);
-
     let budgetName = this.saveInputsForm.value['budgetName'];
     console.log(budgetName);
 

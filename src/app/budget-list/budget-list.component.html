@@ -20,11 +20,19 @@
           </button>
           <button
           matTooltip="Sort by Date"
-        matTooltipPosition="right" 
+        matTooltipPosition="below" 
           mat-mini-fab color="warn" 
           (click)="sortByDate()" 
           aria-label="Example icon button with a filter list icon">
             <mat-icon>date_range</mat-icon>
+          </button>
+          <button
+          matTooltip="Delete All Saved Budgets"
+        matTooltipPosition="right" 
+          mat-mini-fab color="accent" 
+          (click)="deleteAllBudgets()" 
+          aria-label="delete button">
+          <mat-icon>delete_forever</mat-icon>
           </button>
       </div>
 

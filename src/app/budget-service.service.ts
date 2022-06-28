@@ -3,6 +3,8 @@ import { priceItem, budgetItem } from './interfaces';
 import { FormGroup } from '@angular/forms';
 import { webServiceNames } from './interfaces';
 import { Observable, Subject } from 'rxjs';
+import { WebStorageService } from './services/web-storage.service';
+import { BudgetListService } from './budget-list/budget-list.service';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +38,11 @@ export class BudgetServiceService {
     return this.subject2.asObservable();
   }
 
-  budgets: budgetItem[] = [];
+  localStorageBudgets = this.webstorageService.get('budgets');
+
+  budgets: budgetItem[] = JSON.parse(
+    this.localStorageBudgets == null ? '[]' : this.localStorageBudgets
+  );
 
   budgetsMobile: any[] = [];
 
@@ -57,7 +63,7 @@ export class BudgetServiceService {
 
   public searchByName = false;
 
-  constructor() {}
+  constructor(public webstorageService: WebStorageService) {}
 
   calcPrice() {
     this.totalCost =
@@ -204,22 +210,19 @@ export class BudgetServiceService {
       },
       { position: 6, name: 'Total', quantity: '', subtotal: this.totalCost },
     ]);
-    console.log('budgetsMobile ', this.budgetsMobile);
 
-    //localStorage
-    this.storeBudgets();
+    this.webstorageService.set('budgets', JSON.stringify(this.budgets));
+    let savedBudgets = this.webstorageService.get('budgets');
+    // this.budgets = [...JSON.parse(savedBudgets || '[{}]')];
+
+    console.log('BUDGETS FROM BUDGET SERVICE', this.budgets);
+    console.log('local storage budgets', savedBudgets);
   }
 
-  //START LOCAL STORAGE
-  key: string = 'budgets';
-  myItem: string | null = '';
-
-  storeBudgets() {
-    localStorage.setItem(this.key, JSON.stringify(this.budgets));
-    this.myItem = localStorage.getItem(this.key);
+  clearAllBudgets() {
+    this.budgets.splice(0, this.budgets.length);
+    this.webstorageService.set('budgets', '[]');
   }
-
-  //END LOCAL STORAGE
 
   sortAlphabetically() {
     this.originalBudgets = [...this.budgets];
@@ -247,8 +250,8 @@ export class BudgetServiceService {
     this.originalBudgets.splice(0, this.budgets.length);
     this.originalBudgets.push(...this.budgets);
     this.searchByName = true;
-    let filteredItem = this.budgets.filter(
-      (budget) => budget.budgetName === nameValue
+    let filteredItem = this.budgets.filter((budget) =>
+      budget.budgetName.toLowerCase().includes(nameValue.toLowerCase())
     );
 
     this.budgets.splice(0, this.budgets.length);

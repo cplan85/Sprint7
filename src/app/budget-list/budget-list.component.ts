@@ -1,25 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetServiceService } from '../budget-service.service';
+import { budgetItem } from '../interfaces';
 
 @Component({
   selector: 'app-budget-list',
   templateUrl: './budget-list.component.html',
   styleUrls: ['./budget-list.component.scss'],
 })
-export class BudgetListComponent implements OnInit {
+export class BudgetListComponent {
   constructor(public budgetService: BudgetServiceService) {}
 
-  budgets = this.budgetService.budgets;
+  public budgets: budgetItem[] | null = this.budgetService.budgets;
+  //budgets = this.budgetService.budgets;
 
   budgetsMobile = this.budgetService.budgetsMobile;
 
-  //new code tried on Jun 23rd
-  storageBudgets = localStorage.getItem('budgets');
-  parsedLocalBudgets = JSON.parse(this.storageBudgets!);
-
   filteredBudgets = this.budgetService.filteredBudgets;
-
-  ngOnInit(): void {}
 
   displayedColumns: string[] = [
     'sitioWeb',
@@ -51,5 +47,9 @@ export class BudgetListComponent implements OnInit {
   resetBudgets() {
     this.searchByName = !this.searchByName;
     this.budgetService.resetBudgets();
+  }
+
+  deleteAllBudgets() {
+    this.budgetService.clearAllBudgets();
   }
 }

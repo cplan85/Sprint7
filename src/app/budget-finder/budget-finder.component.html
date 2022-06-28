@@ -1,6 +1,6 @@
 
 
-<form [formGroup]="budgetFinder" (ngSubmit)="send()">
+<form [formGroup]="budgetFinder" (keyup)="send()">
   
     <mat-form-field color="white" class="example-full-width" appearance="fill">
       <mat-label id="search-label"> Find by Budget Name</mat-label>
