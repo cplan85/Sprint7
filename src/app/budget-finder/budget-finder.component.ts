@@ -42,5 +42,6 @@ export class BudgetFinderComponent implements OnInit {
     this.searchByName = false;
     this.budgetFinder.reset();
     this.budgetService.clearSearch();
+    this.budgetListService.setSearchString('');
   }
 }
