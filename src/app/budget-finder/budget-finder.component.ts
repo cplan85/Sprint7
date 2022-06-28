@@ -1,3 +1,4 @@
+import { BudgetListService } from './../budget-list/budget-list.service';
 import { Component, OnInit } from '@angular/core';
 import { BudgetServiceService } from '../budget-service.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -15,9 +16,12 @@ export class BudgetFinderComponent implements OnInit {
 
   budgets = this.budgetService.budgets;
 
+  searchByName = false;
+
   constructor(
     private _builder: FormBuilder,
-    public budgetService: BudgetServiceService
+    public budgetService: BudgetServiceService,
+    public budgetListService: BudgetListService
   ) {
     this.budgetFinder = this._builder.group({
       queryName: ['', Validators.required],
@@ -26,11 +30,17 @@ export class BudgetFinderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  send() {
-    this.budgetService.searchByName = !this.budgetService.searchByName;
+  filter() {
     let queryName = this.budgetFinder.value['queryName'];
-    console.log(queryName);
-
+    queryName.length > 0
+      ? (this.searchByName = true)
+      : (this.searchByName = false);
     this.budgetService.findByName(queryName);
+    this.budgetListService.setSearchString(queryName);
+  }
+  clear() {
+    this.searchByName = false;
+    this.budgetFinder.reset();
+    this.budgetService.clearSearch();
   }
 }

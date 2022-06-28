@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetServiceService } from '../budget-service.service';
+import { BudgetListService } from './budget-list.service';
 import { budgetItem } from '../interfaces';
 
 @Component({
@@ -8,7 +9,10 @@ import { budgetItem } from '../interfaces';
   styleUrls: ['./budget-list.component.scss'],
 })
 export class BudgetListComponent {
-  constructor(public budgetService: BudgetServiceService) {}
+  constructor(
+    public budgetService: BudgetServiceService,
+    public budgetListService: BudgetListService
+  ) {}
 
   public budgets: budgetItem[] | null = this.budgetService.budgets;
   //budgets = this.budgetService.budgets;

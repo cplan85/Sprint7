@@ -24,6 +24,7 @@ import { BindQueryParamDirective } from './bindQueryParam.directive';
 import { DonutChartComponent } from './donut-chart/donut-chart.component';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { HighlightTextPipe } from './pipes/highlight-text.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeScreenComponent },
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     BudgetFinderComponent,
     BindQueryParamDirective,
     DonutChartComponent,
+    HighlightTextPipe,
   ],
   imports: [
     BrowserModule,

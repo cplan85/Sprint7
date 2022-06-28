@@ -1,6 +1,6 @@
 
 
-<form [formGroup]="budgetFinder" (keyup)="send()">
+<form [formGroup]="budgetFinder" (keyup)="filter()">
   
     <mat-form-field color="white" class="example-full-width" appearance="fill">
       <mat-label id="search-label"> Find by Budget Name</mat-label>
@@ -8,10 +8,10 @@
     </mat-form-field>
     <br/>
 
-    <button mat-raised-button color="warn" [disabled]="budgetFinder.invalid" class="btn btn-primary" type="submit">Find Budget</button>
+    <button mat-raised-button color="warn" [disabled]="budgetFinder.invalid" class="btn btn-primary" (click)="clear()">Clear Search</button>
 </form>
 
-<div *ngIf="this.budgetService.searchByName; else startScreen">
+<div *ngIf="this.searchByName; else startScreen">
   Found {{budgets.length}} results.
 </div>
 

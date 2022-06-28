@@ -215,8 +215,8 @@ export class BudgetServiceService {
     let savedBudgets = this.webstorageService.get('budgets');
     // this.budgets = [...JSON.parse(savedBudgets || '[{}]')];
 
-    console.log('BUDGETS FROM BUDGET SERVICE', this.budgets);
-    console.log('local storage budgets', savedBudgets);
+    this.originalBudgets.splice(0, this.budgets.length);
+    this.originalBudgets.push(...this.budgets);
   }
 
   clearAllBudgets() {
@@ -247,14 +247,18 @@ export class BudgetServiceService {
   }
 
   findByName(nameValue: string) {
-    this.originalBudgets.splice(0, this.budgets.length);
-    this.originalBudgets.push(...this.budgets);
-    this.searchByName = true;
     let filteredItem = this.budgets.filter((budget) =>
       budget.budgetName.toLowerCase().includes(nameValue.toLowerCase())
     );
 
     this.budgets.splice(0, this.budgets.length);
-    this.budgets.push(...filteredItem);
+    nameValue.length > 0
+      ? this.budgets.push(...filteredItem)
+      : this.budgets.push(...this.originalBudgets);
+  }
+
+  clearSearch() {
+    this.budgets.splice(0, this.budgets.length);
+    this.budgets.push(...this.originalBudgets);
   }
 }

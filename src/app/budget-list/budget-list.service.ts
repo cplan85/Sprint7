@@ -6,15 +6,14 @@ import { budgetItem } from '../interfaces';
   providedIn: 'root',
 })
 export class BudgetListService {
+  public searchString = '';
+
+  setSearchString(value: string) {
+    this.searchString = value;
+  }
+
+  public getSearchString(): string {
+    return this.searchString;
+  }
   constructor(public budgetService: BudgetServiceService) {}
-
-  public async getAll(): Promise<budgetItem[]> {
-    return this.budgetService.budgets;
-  }
-
-  public async filter(text: string): Promise<budgetItem[]> {
-    return this.budgetService.budgets.filter((budget) =>
-      budget.budgetName.toLowerCase().includes(text.toLowerCase())
-    );
-  }
 }
