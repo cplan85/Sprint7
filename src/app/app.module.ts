@@ -25,6 +25,7 @@ import { DonutChartComponent } from './donut-chart/donut-chart.component';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { HighlightTextPipe } from './pipes/highlight-text.pipe';
+import { TitleFontComponent } from './title-font/title-font.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeScreenComponent },
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     BindQueryParamDirective,
     DonutChartComponent,
     HighlightTextPipe,
+    TitleFontComponent,
   ],
   imports: [
     BrowserModule,
