@@ -31,15 +31,17 @@ Because of the various requirements, I had to figure out how to best break down 
 
 ## :memo: **What do I still need to do**
 
-1. Implement individual delete function on each saved Budget.
+1. Implement individual delete function on each Saved Budget.
 
-2. Create a modal asking the user if they are sure they want to delete all Saved Budgets.
+2. Implement date and plural pipes on the Saved Budgets for improved text formatting.
 
-3. Implement unit tests to ensure filtering function works exactly as intended.
+3. Create a modal asking the user if they are sure they want to delete all Saved Budgets.
 
-4. Additional styling to saved budget lists .
+4. Implement unit tests to ensure filtering function works exactly as intended.
 
-5. Refactor the code.
+5. Additional styling to saved budget lists .
+
+6. Refactor the code.
 
 ---
 
