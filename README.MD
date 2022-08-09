@@ -16,6 +16,8 @@ As a bonus feature, I implemented a Donut Chart from [ApexCharts](https://apexch
 
 The user can filter the saved budgets through the use of a <b>budget-list service</b>. To help faciliate the search process, I created a custom [Angular Pipe](https://angular.io/guide/pipes) that highlights the search term as the user types in the letters.
 
+## ![preview gif](Filtering-preview.gif)
+
 Finally, each change in the budget modifies the website url through the use of Angular's [Router Params](https://angular.io/guide/router) and [Query Params Handling](https://angular.io/api/router/QueryParamsHandling). Each time the budget changes, parameters in the url change. A user can copy and paste the exact url link, and the budgets will appear with exactly those matching budget parameters.
 
 ---
