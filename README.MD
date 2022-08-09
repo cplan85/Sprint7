@@ -10,7 +10,13 @@ The Sprint 7 - Budget App is an Angular application that allows users to develop
 
 ## :wrench: **Tech used in this project**
 
-In this project I used Angular with Angular Materials Libraries components to develop a web app that allows users to save their budgets. In this app several services are used to update the total amount.
+In this project I used Angular with Angular Materials Libraries components to develop a web app that allows users to save their budgets. A budget service is shared by various components to update the total amount. Different page links are handled through Angular's router module. The user begins in the welcome page, and then is taken to the main budget page, which has several check boxes and inputs fields to allow customizing the numbers in the budget. Angular's Reactive forms handles the inputs that modify the budget total. Modals from Angular Materials provides helpful feedback when needed. If the user would like to save the budget, a save budget feature is provided where the user can save the budget with a name and customer fields. The saved budgets are then displayed in the saved budgets component on the right through local storage.
+
+<p>
+The user can filter the saved budgets through the use of a budget list service. To help faciliate the search process, I created a custom search filter pipe that highlights the search term as the user types in the letters.<p>
+
+<p>
+Finally, each change in the budget modifies the website url through the use of Angular's Router Params. A user can copy and paste the exact url link, and the budgets will appear with exactly those matching budget parameters.</p>
 
 ---
 
