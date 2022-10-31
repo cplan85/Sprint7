@@ -21,6 +21,8 @@ export class BudgetServiceService {
 
   private subject2 = new Subject<any>();
 
+  private mobileBudgetsSubject = new Subject<any>();
+
   sendClickEvent() {
     this.subject.next(this.p1);
   }
@@ -29,6 +31,10 @@ export class BudgetServiceService {
     this.subject2.next(this.webpages);
   }
 
+  // sendMobileBudgetChangEvent() {
+  //   this.mobileBudgetsSubject.next(this.budgetsMobile);
+  // }
+
   getClickEvent(): Observable<any> {
     return this.subject.asObservable();
   }
@@ -36,6 +42,11 @@ export class BudgetServiceService {
   getPageChangeEvent(): Observable<any> {
     return this.subject2.asObservable();
   }
+
+  // getMobileBudgetsChangeEvent(): Observable<any> {
+  //   return this.mobileBudgetsSubject.asObservable();
+  // }
+
 
   localStorageBudgets = this.webstorageService.get('budgets');
 
@@ -109,7 +120,7 @@ export class BudgetServiceService {
         itemAmount * item.price +
         this.idiomas * this.p5;
 
-      console.log('TOTAL COST - PAGINAS from ParamWebPrices', this.totalCost);
+   //   console.log('TOTAL COST - PAGINAS from ParamWebPrices', this.totalCost);
     }
 
     if (itemAmount >= 0 && item.name === 'numeroIdiomas') {
@@ -122,7 +133,7 @@ export class BudgetServiceService {
         this.webpages * this.p4 +
         itemAmount * item.price;
 
-      console.log('TOTAL COST - IDIOMAS from ParamWebPrices', this.totalCost);
+   //   console.log('TOTAL COST - IDIOMAS from ParamWebPrices', this.totalCost);
     }
   }
 
@@ -178,46 +189,38 @@ export class BudgetServiceService {
       dateRaw: timeElapsed,
     });
 
-    this.budgetsMobile.push([
-      {
-        position: 1,
-        name: 'Pagina Web',
-        quantity: this.p1 !== 0 ? 1 : 0,
-        subtotal: (this.p1 !== 0 ? 1 : 0) * this.p1,
+   /* this.budgets.forEach(budget => {
+      this.budgetsMobile.push(
+      [  {
+        name: 'Web Site', quantity: budget.paginaWebQuantity, cost: 500, subtotal: budget.paginaWebQuantity * 500 
       },
       {
-        position: 2,
-        name: '# Paginas',
-        quantity: this.webpages,
-        subtotal: this.webpages * this.p4,
+        name: 'Web Pages', quantity: budget.paginasQuantity, cost: 30, subtotal: budget.paginasQuantity * 30 
       },
       {
-        position: 3,
-        name: '# Idiomas',
-        quantity: this.idiomas,
-        subtotal: this.idiomas * this.p5,
+        name: 'Idiomas', quantity: budget.idiomasQuantity, cost: 30, subtotal: budget.idiomasQuantity * 30 
       },
       {
-        position: 4,
-        name: 'Consultoria SEO',
-        quantity: this.p2 !== 0 ? 1 : 0,
-        subtotal: `${(this.p2 !== 0 ? 1 : 0) * this.p2} `,
+        name: 'SEO', quantity: budget.consultoriaSEOQuantity, cost: 300, subtotal: budget.consultoriaSEOQuantity * 300 
       },
       {
-        position: 5,
-        name: 'Companya Google',
-        quantity: this.p3 !== 0 ? 1 : 0,
-        subtotal: (this.p3 !== 0 ? 1 : 0) * this.p3,
+        name: 'Google Ads', quantity: budget.companyaGoogleQuantiy, cost: 200, subtotal: budget.companyaGoogleQuantiy * 200 
       },
-      { position: 6, name: 'Total', quantity: '', subtotal: this.totalCost },
-    ]);
+      {
+        name: 'TOTAL', quantity: '', cost: '', subtotal: budget.totalCost
+      },
+    ]
+      
+      )
+    });*/
 
     this.webstorageService.set('budgets', JSON.stringify(this.budgets));
     let savedBudgets = this.webstorageService.get('budgets');
-    // this.budgets = [...JSON.parse(savedBudgets || '[{}]')];
 
     this.originalBudgets.splice(0, this.budgets.length);
     this.originalBudgets.push(...this.budgets);
+
+//this.sendMobileBudgetChangEvent()
   }
 
   clearAllBudgets() {

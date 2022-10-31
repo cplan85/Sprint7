@@ -56,17 +56,14 @@ export class PanelComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       let numberPaginas = parseInt(queryParams['numberoPaginas']);
       let numberIdiomas = parseInt(queryParams['numeroIdiomas']);
-      console.log('113', isNaN(numberPaginas));
 
       this.goPaginasWebInit(
         isNaN(numberPaginas) ? 0 : numberPaginas,
         isNaN(numberIdiomas) ? 0 : numberIdiomas
       );
-      // this.budgetService.webpages = parseInt(queryParams['numberoPaginas']);
-      console.log(this.budgetService.totalCost);
     });
     this.activatedRoute.params.subscribe((params) => {
-      console.log('Regular Params:', params);
+     // console.log('Regular Params:', params);
     });
   }
 

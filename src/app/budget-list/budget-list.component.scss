@@ -8,6 +8,10 @@
     overflow-y: hidden;
 }
 
+.col-field {
+    margin-right:.7rem;
+}
+
 #mobile-table {
     display:none
 }
@@ -34,4 +38,17 @@ table {
     table {
         width: 90%;
     }
+
+ 
 }
+
+// @media (max-width: 576px) { 
+
+//     #wide-table {
+//         display:none
+//     }
+
+//     #mobile-table {
+//         display:block;
+//     }
+// }

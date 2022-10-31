@@ -40,10 +40,10 @@ export class HomeComponent implements OnInit {
   prices = this.budgetService.prices;
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
-      console.log('Query Params:', queryParams);
+    //  console.log('Query Params:', queryParams);
     });
     this.activatedRoute.params.subscribe((params) => {
-      console.log('Regular Params:', params);
+    //  console.log('Regular Params:', params);
     });
   }
 

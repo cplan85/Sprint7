@@ -34,10 +34,8 @@ export class SaveInputsComponent implements OnInit {
 
   send(values: any) {
     let budgetName = this.saveInputsForm.value['budgetName'];
-    console.log(budgetName);
 
     let customerName = this.saveInputsForm.value['customerName'];
-    console.log(customerName);
 
     this.budgetService.addBudgetItem(budgetName, customerName);
 
