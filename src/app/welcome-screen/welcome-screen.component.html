@@ -1,23 +1,26 @@
 <div class="container">
     <app-title-font></app-title-font>
-    <h2>SPRINT 7</h2>
-    <p>Solució intuïtiva senzilla per crear pressupostos web!</p>
-    <mat-list role="list">
-        <mat-list-item role="listitem">
-            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
-                <mat-icon>assignment</mat-icon>
-            </button>
-            Pas 1: seleccioneu els serveis que voleu </mat-list-item>
-        <mat-list-item role="listitem">
-            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
-               <mat-icon>save</mat-icon>
-            </button>
-            Pas 2: Estalvieu el vostre pressupost amb un nom personalitzat</mat-list-item>
-        <mat-list-item role="listitem">
-            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
-                <mat-icon>get_app</mat-icon>
-             </button>
-            Pas 3: recupera els pressupostos desats per comparar els costos.</mat-list-item>
-      </mat-list>
-    <a href="/home" mat-raised-button color="warn">Comenceu aquí</a>
+    <div class="welcome-screen">
+        <h2>SPRINT 7</h2>
+        <p>Solució intuïtiva senzilla per crear pressupostos web!</p>
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                    <mat-icon>assignment</mat-icon>
+                </button>
+                Pas 1: seleccioneu els serveis que voleu </mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                   <mat-icon>save</mat-icon>
+                </button>
+                Pas 2: Estalvieu el vostre pressupost amb un nom personalitzat</mat-list-item>
+            <mat-list-item role="listitem">
+                <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                    <mat-icon>get_app</mat-icon>
+                 </button>
+                Pas 3: recupera els pressupostos desats per comparar els costos.</mat-list-item>
+          </mat-list>
+    
+    <a [routerLink]="['/home']"  mat-raised-button color="warn">Comenceu aquí</a>
+    </div>
 </div>
